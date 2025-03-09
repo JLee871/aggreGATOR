@@ -5,6 +5,7 @@ import (
 	"encoding/xml"
 	"html"
 	"net/http"
+	"time"
 )
 
 type RSSFeed struct {
@@ -24,25 +25,28 @@ type RSSItem struct {
 }
 
 func fetchFeed(ctx context.Context, feedURL string) (*RSSFeed, error) {
-	client := http.DefaultClient
+	client := &http.Client{
+		Timeout: 10 * time.Second,
+	}
+
 	rss := &RSSFeed{}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", feedURL, nil)
 	if err != nil {
-		return rss, err
+		return nil, err
 	}
 
 	req.Header.Set("User-Agent", "gator")
 
 	resp, err := client.Do(req)
 	if err != nil {
-		return rss, err
+		return nil, err
 	}
 
 	decoder := xml.NewDecoder(resp.Body)
 	err = decoder.Decode(rss)
 	if err != nil {
-		return rss, err
+		return nil, err
 	}
 
 	rss.Channel.Title = html.UnescapeString(rss.Channel.Title)

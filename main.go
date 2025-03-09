@@ -50,7 +50,11 @@ func main() {
 	cmds.register("addfeed", middlewareLoggedIn(handlerAddFeed))
 	cmds.register("feeds", handlerFeeds)
 	cmds.register("follow", middlewareLoggedIn(handlerFollow))
+	cmds.register("unfollow", middlewareLoggedIn(handlerUnfollow))
 	cmds.register("following", handlerFollowing)
+
+	//Handlers found in posts.go
+	cmds.register("browse", handlerBrowse)
 
 	osArgs := os.Args
 	if len(osArgs) < 2 {

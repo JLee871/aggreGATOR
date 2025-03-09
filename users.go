@@ -39,7 +39,6 @@ func handlerRegister(s *state, cmd command) error {
 	name := cmd.Args[0]
 	user, err := s.DB.CreateUser(context.Background(), database.CreateUserParams{ID: uuid.New(), CreatedAt: time.Now(), UpdatedAt: time.Now(), Name: name})
 	if err != nil {
-		os.Exit(1)
 		return err
 	}
 	fmt.Println("new user created")
