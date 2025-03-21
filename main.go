@@ -56,17 +56,20 @@ func main() {
 	//Handlers found in posts.go
 	cmds.register("browse", handlerBrowse)
 
+	//Read cli input
 	osArgs := os.Args
 	if len(osArgs) < 2 {
 		log.Fatal("Usage: cli <command> [args...]")
 		return
 	}
 
+	//Get command and optional parameters
 	cmd := command{
 		Name: osArgs[1],
 		Args: osArgs[2:],
 	}
 
+	//Run command with optional parameters
 	err = cmds.run(&newState, cmd)
 	if err != nil {
 		log.Fatal(err)

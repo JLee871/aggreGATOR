@@ -12,6 +12,7 @@ import (
 	"github.com/lib/pq"
 )
 
+// Scrapes feeds after given interval
 func handlerAgg(s *state, cmd command) error {
 	if len(cmd.Args) != 1 {
 		return fmt.Errorf("usage: %s <time between requests>", cmd.Name)

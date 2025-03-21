@@ -8,12 +8,15 @@ import (
 	"github.com/JLee871/aggreGATOR/internal/database"
 )
 
+const defaultLimit = 2
+
+// Prints feeds to cli for user up to the limit
 func handlerBrowse(s *state, cmd command) error {
 	if len(cmd.Args) > 1 {
 		return fmt.Errorf("usage: %s <number>", cmd.Name)
 	}
 
-	num := 2
+	num := defaultLimit
 	if len(cmd.Args) == 1 {
 		var err error
 		num, err = strconv.Atoi(cmd.Args[0])

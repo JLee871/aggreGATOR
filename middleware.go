@@ -6,6 +6,7 @@ import (
 	"github.com/JLee871/aggreGATOR/internal/database"
 )
 
+// Wrapper function for checking logged in user
 func middlewareLoggedIn(handler func(s *state, cmd command, user database.User) error) func(*state, command) error {
 	return func(s *state, cmd command) error {
 		user, err := s.DB.GetUser(context.Background(), s.Config.CurrentUserName)

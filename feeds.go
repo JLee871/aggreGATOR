@@ -91,6 +91,7 @@ func handlerFollow(s *state, cmd command, user database.User) error {
 	return nil
 }
 
+// Unfollow a feed
 func handlerUnfollow(s *state, cmd command, user database.User) error {
 	if len(cmd.Args) != 1 {
 		return fmt.Errorf("usage: %s <feed url>", cmd.Name)
