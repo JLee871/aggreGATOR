@@ -21,7 +21,7 @@ Run the database migrations in the sql/schema directory. This can be done with g
 ## Commands
 
 ### User-Related Commands:
-***
+
 ### *register*
 - **Usage**: `register {name}`
 ###### Example:
@@ -61,7 +61,7 @@ aggreGATOR users
 - **Description**: Returns all users in the database
 ***
 ### Feed-Related Commands:
-***
+
 ### *addfeed*
 - **Usage**: `addfeed {name} {url}`
 ###### Example:
@@ -157,7 +157,7 @@ aggreGATOR agg 60s
 - **Description**: Constantly fetches posts from all feeds and adds them to the database, checks once every given duration time. Valid time units for duration are s (seconds), m (minutes), h (hours).
 ***
 ### Other Commands:
-***
+
 ### *reset*
 - **Usage**: `reset`
 ###### Example:
