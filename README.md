@@ -21,7 +21,7 @@ Run the database migrations in the sql/schema directory. This can be done with g
 ## Commands
 
 ### User-Related Commands:
-
+***
 ### *register*
 - **Usage**: `register {name}`
 ###### Example:
@@ -33,7 +33,7 @@ aggreGATOR register MrGator
 New user created: MrGator
 ```
 - **Description**: Adds user with the given name to the users database
-
+***
 ### *login*
 - **Usage**: `login {name}`
 ###### Example:
@@ -45,7 +45,7 @@ aggreGATOR login MrGator
 User has been set to MrGator.
 ```
 - **Description**: Sets current user to user with given name. Fails if user does not exist in the database.
-
+***
 ### *users*
 - **Usage**: `users`
 ###### Example:
@@ -59,9 +59,9 @@ aggreGATOR users
 * MrCrocodile
 ```
 - **Description**: Returns all users in the database
-
+***
 ### Feed-Related Commands:
-
+***
 ### *addfeed*
 - **Usage**: `addfeed {name} {url}`
 ###### Example:
@@ -73,7 +73,7 @@ aggreGATOR addfeed "Lanes Blog" "https://www.wagslane.dev/index.xml"
 Added feed: Lanes Blog
 ```
 - **Description**: Adds feed with the given name and url to the feeds database. The feed is automatically followed by the user that creates it.
-
+***
 ### *feeds*
 - **Usage**: `feeds`
 ###### Example:
@@ -87,7 +87,7 @@ Name: Hacker News RSS , URL: https://hnrss.org/newest , User: MrFrog
 Name: Tech Crunch , URL: https://techcrunch.com/feed/ , User: MrFrog
 ```
 - **Description**: Returns all feeds in database with feed name, url, and user that initially added the feed.
-
+***
 ### *follow*
 - **Usage**: `follow {url}`
 ###### Example:
@@ -99,7 +99,7 @@ aggreGATOR follow "https://hnrss.org/newest"
 MrGator is now following Hacker News RSS.
 ```
 - **Description**: Follows feed with the given url for the current user.
-
+***
 ### *unfollow*
 - **Usage**: `unfollow {url}`
 ###### Example:
@@ -111,7 +111,7 @@ aggreGATOR unfollow "https://hnrss.org/newest"
 Unfollowed Hacker News RSS.
 ```
 - **Description**: Unfollows feed with the given url for the current user.
-
+***
 ### *following*
 - **Usage**: `following`
 ###### Example:
@@ -124,7 +124,7 @@ Lanes Blog
 Tech Crunch
 ```
 - **Description**: Returns all feeds followed by current user.
-
+***
 ### *browse*
 - **Usage**: `browse {number (optional, default=2)}`
 ###### Example:
@@ -147,7 +147,7 @@ https://leancrew.com/all-this/2025/03/a-mac-smart-quote-curiosity/
 =================================
 ```
 - **Description**: Returns the given number of posts from followed feeds, most recent first.
-
+***
 ### *agg*
 - **Usage**: `agg {timeout duration}`
 ###### Example:
@@ -155,9 +155,9 @@ https://leancrew.com/all-this/2025/03/a-mac-smart-quote-curiosity/
 aggreGATOR agg 60s
 ```
 - **Description**: Constantly fetches posts from all feeds and adds them to the database, checks once every given duration time. Valid time units for duration are s (seconds), m (minutes), h (hours).
-
+***
 ### Other Commands:
-
+***
 ### *reset*
 - **Usage**: `reset`
 ###### Example:
