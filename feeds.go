@@ -3,7 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
-	"reflect"
+	"os"
+	"strings"
 
 	"github.com/JLee871/aggreGATOR/internal/database"
 	"github.com/google/uuid"
@@ -36,12 +37,13 @@ func handlerAddFeed(s *state, cmd command, user database.User) error {
 		return err
 	}
 
-	v := reflect.ValueOf(feed)
+	fmt.Printf("Added feed: %s", name)
+	//v := reflect.ValueOf(feed)
 
-	for i := 0; i < v.NumField(); i++ {
-		field := v.Field(i)
-		fmt.Println(v.Type().Field(i).Name, "-", field.Interface())
-	}
+	//for i := 0; i < v.NumField(); i++ {
+	//	field := v.Field(i)
+	//	fmt.Println(v.Type().Field(i).Name, "-", field.Interface())
+	//}
 
 	return nil
 }
@@ -82,11 +84,16 @@ func handlerFollow(s *state, cmd command, user database.User) error {
 
 	feedFollow, err := s.DB.CreateFeedFollow(context.Background(), database.CreateFeedFollowParams{ID: uuid.New(), UserID: user.ID, FeedID: feed.ID})
 	if err != nil {
+		if strings.Contains(err.Error(), "uq_userid_feedid") {
+			fmt.Printf("Already following %s.\n", feed.Name)
+			os.Exit(1)
+		}
 		return err
 	}
 
-	fmt.Println(feedFollow.FeedName)
-	fmt.Println(feedFollow.UserName)
+	fmt.Printf("%s is now following %s.\n", feedFollow.UserName, feedFollow.FeedName)
+	//fmt.Println(feedFollow.UserName)
+	//fmt.Println(feedFollow.FeedName)
 
 	return nil
 }

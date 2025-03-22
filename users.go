@@ -37,12 +37,12 @@ func handlerRegister(s *state, cmd command) error {
 		return fmt.Errorf("usage: %s <name>", cmd.Name)
 	}
 	name := cmd.Args[0]
-	user, err := s.DB.CreateUser(context.Background(), database.CreateUserParams{ID: uuid.New(), CreatedAt: time.Now(), UpdatedAt: time.Now(), Name: name})
+	_, err := s.DB.CreateUser(context.Background(), database.CreateUserParams{ID: uuid.New(), CreatedAt: time.Now(), UpdatedAt: time.Now(), Name: name})
 	if err != nil {
 		return err
 	}
-	fmt.Println("new user created")
-	fmt.Println(user)
+	fmt.Printf("New user created: %s\n", name)
+	//fmt.Println(user)
 
 	err = s.Config.SetUser(name)
 	if err != nil {
